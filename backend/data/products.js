@@ -6,7 +6,7 @@ const products = [
     brand: "Dead West",
     category: "Apparel",
     price: 120.0,
-    countInStock: 1,
+    countInStock: 5,
     rating: 5,
     numReviews: 1,
   },
