@@ -1,17 +1,17 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { logout } from "../actions/userActions";
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap"
+import { LinkContainer } from "react-router-bootstrap"
+import { logout } from "../actions/userActions"
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const dispatch = useDispatch()
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const logoutHandler = () => {
-    dispatch(logout());
-  };
+    dispatch(logout())
+  }
   return (
     <header>
       <Navbar className="py-3" expand="lg" collapseOnSelect>
@@ -49,7 +49,7 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
