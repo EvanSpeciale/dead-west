@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap"
 import Rating from "../components/Rating"
-import { listProductDetails } from "../actions/productActions"
-import Loader from "../components/Loader"
 import Message from "../components/Message"
+import Loader from "../components/Loader"
+import { listProductDetails } from "../actions/productActions"
 
 const ProductScreen = ({ history, match }) => {
 	const [qty, setQty] = useState(1)
@@ -17,7 +17,7 @@ const ProductScreen = ({ history, match }) => {
 
 	useEffect(() => {
 		dispatch(listProductDetails(match.params.id))
-	}, [match])
+	}, [dispatch, match])
 
 	const addToCartHandler = () => {
 		history.push(`/cart/${match.params.id}?qty=${qty}`)
