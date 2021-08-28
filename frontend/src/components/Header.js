@@ -19,7 +19,7 @@ const Header = () => {
 			<Navbar className="py-3" expand="lg" collapseOnSelect>
 				<Container>
 					<LinkContainer to="/">
-						<Navbar.Brand>Dead West</Navbar.Brand>
+						<Navbar.Brand id="dw-brand">Dead West</Navbar.Brand>
 					</LinkContainer>
 
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />

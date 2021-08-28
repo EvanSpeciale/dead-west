@@ -1,50 +1,64 @@
 body {
-  min-height: 100vh;
-  margin: 0;
-  background: rgb(255, 232, 214);
-  background: linear-gradient(
-    0deg,
-    rgba(255, 232, 214, 1) 50%,
-    rgba(255, 232, 214, 0.1258145363408521) 100%
-  );
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	min-height: 100vh;
+	margin: 0;
+	/* background: rgb(255, 232, 214); */
+	background: rgb(255, 232, 214);
+	/* background: linear-gradient(
+		0deg,
+		rgba(255, 232, 214, 1) 50%,
+		rgba(255, 232, 214, 0.1258145363408521) 100%
+	); */
+	background: linear-gradient(
+		0deg,
+		rgba(185, 139, 115, 0.8) 1%,
+		rgba(255, 232, 214, 1) 100%
+	);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 main {
-  min-height: 80vh;
+	min-height: 80vh;
 }
 
 h3 {
-  padding: 1rem 0;
+	padding: 1rem 0;
 }
 
 h1 {
-  font-size: 1.8 rem;
-  padding: 1rem 0;
+	font-size: 1.8 rem;
+	padding: 1rem 0;
 }
 
 h2 {
-  font-size: 1.4rem;
-  padding: 0.5rem 0;
+	font-size: 1.4rem;
+	padding: 0.5rem 0;
 }
 
 .rating span {
-  margin: 0.1rem;
+	margin: 0.1rem;
 }
 
 header {
-  background-color: #6b705c;
+	background-color: #6b705c;
 }
 
 .card-disp {
-  background-color: #f6f6f45d;
+	background-color: #f6f6f45d;
+}
+
+#dw-brand {
+	color: #3f4238;
+}
+
+#search-bar {
+	background-color: #ebebcede;
 }

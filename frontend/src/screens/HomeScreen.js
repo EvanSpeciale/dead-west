@@ -6,6 +6,7 @@ import { listProducts } from "../actions/productActions"
 import Loader from "../components/Loader"
 import Paginate from "../components/Paginate"
 import Message from "../components/Message"
+import Meta from "../components/Meta"
 
 const HomeScreen = ({ match }) => {
 	const keyword = match.params.keyword
@@ -23,6 +24,7 @@ const HomeScreen = ({ match }) => {
 
 	return (
 		<>
+			<Meta title="Dead West | Home" />
 			<h1>Products</h1>
 			{loading ? (
 				<Loader />

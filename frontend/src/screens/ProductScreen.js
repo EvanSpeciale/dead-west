@@ -5,15 +5,18 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap"
 import Rating from "../components/Rating"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+import Meta from "../components/Meta"
 import {
 	listProductDetails,
 	createProductReview,
 } from "../actions/productActions"
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants"
+import { addToCart } from "../actions/cartActions"
 
 const ProductScreen = ({ history, match }) => {
+	const productId = match.params.id
 	const [qty, setQty] = useState(1)
-	const [rating, setRating] = useState(0)
+	const [rating, setRating] = useState("")
 	const [comment, setComment] = useState("")
 
 	const dispatch = useDispatch()
@@ -35,11 +38,12 @@ const ProductScreen = ({ history, match }) => {
 			setComment("")
 			dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
 		}
-		dispatch(listProductDetails(match.params.id))
-	}, [dispatch, match, successProductReview])
+		dispatch(listProductDetails(productId))
+	}, [dispatch, match, successProductReview, productId])
 
 	const addToCartHandler = () => {
-		history.push(`/cart/${match.params.id}?qty=${qty}`)
+		dispatch(addToCart(product._id, qty))
+		history.push("/cart")
 	}
 
 	const submitHandler = (e) => {
@@ -63,6 +67,7 @@ const ProductScreen = ({ history, match }) => {
 				<Message variant="danger">{error}</Message>
 			) : (
 				<>
+					<Meta title={product.name} />
 					<Row>
 						<Col md={6}>
 							<Image src={product.image} alt={product.name} fluid />
