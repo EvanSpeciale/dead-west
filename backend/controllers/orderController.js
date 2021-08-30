@@ -1,5 +1,7 @@
 import asyncHandler from "express-async-handler"
 import Order from "../models/orderModel.js"
+import User from "../models/userModel.js"
+import { mg } from "../server.js"
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -58,6 +60,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
 	const order = await Order.findById(req.params.id)
+	const user = await User.findById(order.user)
 
 	if (order) {
 		order.isPaid = true
@@ -70,6 +73,38 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 		}
 
 		const updatedOrder = await order.save()
+
+		mg.messages
+			.create("sandbox3bd394c722664dd0b3787a326287bc73.mailgun.org", {
+				from: "Dead West <mailgun@sandbox3bd394c722664dd0b3787a326287bc73.mailgun.org>",
+				to: ["evspeciale@gmail.com"],
+				subject: `New Order Created: #${order._id}`,
+				text: `Name: ${user.name}\nEmail: ${user.email}\nAddress: ${
+					order.shippingAddress.address
+				}\n${order.shippingAddress.city}, ${order.shippingAddress.state} ${
+					order.shippingAddress.postalCode
+				}\n ${
+					order.shippingAddress.country
+				}\nOrder Items:\n ${order.orderItems.map(
+					(item, index) =>
+						item.name +
+						": " +
+						item.qty +
+						" x $" +
+						item.price +
+						" = $" +
+						item.qty +
+						" * " +
+						item.price +
+						"\n"
+				)}Order Total: $ ${
+					order.totalPrice - order.taxPrice - order.shippingPrice
+				}\nShipping Price: $ ${order.shippingPrice}\nTax: $ ${
+					order.taxPrice
+				}\nTotal: $ ${order.totalPrice}`,
+			})
+			.then((msg) => console.log(msg))
+			.catch((err) => console.log(err))
 
 		res.json(updatedOrder)
 	} else {

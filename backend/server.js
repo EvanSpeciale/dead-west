@@ -4,6 +4,8 @@ import dotenv from "dotenv"
 import colors from "colors"
 import morgan from "morgan"
 import pkg from "cloudinary"
+import formData from "form-data"
+import Mailgun from "mailgun.js"
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
 import connectDB from "./config/db.js"
 
@@ -30,6 +32,9 @@ cloudinary.config({
 	api_key: process.env.CLOUD_API_KEY,
 	api_secret: process.env.CLOUD_API_SECRET,
 })
+
+const mailgun = new Mailgun(formData)
+const mg = mailgun.client({ username: "api", key: process.env.MAILGUN_API_KEY })
 
 app.use("/api/products", productRoutes)
 app.use("/api/users", userRoutes)
@@ -67,3 +72,5 @@ app.listen(
 			.underline
 	)
 )
+
+export { mg }
